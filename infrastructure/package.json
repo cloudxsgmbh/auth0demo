@@ -21,12 +21,20 @@
     "typescript": "~3.9.7"
   },
   "dependencies": {
+    "@aws-amplify/graphql-transformer-core": "^0.5.0",
     "@aws-cdk/aws-appsync": "^1.102.0",
     "@aws-cdk/aws-dynamodb": "^1.102.0",
     "@aws-cdk/aws-lambda": "^1.102.0",
     "@aws-cdk/aws-s3": "^1.102.0",
     "@aws-cdk/aws-s3-deployment": "^1.102.0",
     "@aws-cdk/core": "1.102.0",
+    "graphql-appsync-transformer": "^1.0.35",
+    "graphql-auth-transformer": "^6.24.6",
+    "graphql-connection-transformer": "^4.21.6",
+    "graphql-dynamodb-transformer": "^6.22.6",
+    "graphql-function-transformer": "^2.5.6",
+    "graphql-key-transformer": "^2.23.6",
+    "graphql-versioned-transformer": "^4.17.6",
     "source-map-support": "^0.5.16"
   }
 }
