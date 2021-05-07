@@ -45,14 +45,14 @@ export class Auth0demoStack extends cdk.Stack {
     //#region - Amplify AppSync >>>>>>>>>>>>>>>>>>>>>>>>>
     const STAGE = this.node.tryGetContext('STAGE')
 
-    const api = new GraphqlApi(this, 'demo-gql-api', {
-      name: `demo-api-${STAGE}`,
+    const api = new GraphqlApi(this, 'auth0demo-api', {
+      name: `auth0demo-api-${STAGE}`,
       schema: Schema.fromAsset('./appsync/schema.graphql'),
       authorizationConfig: {
         defaultAuthorization: {
-          authorizationType: AuthorizationType.API_KEY,
-          apiKeyConfig: {
-            expires: cdk.Expiration.after(cdk.Duration.days(365))
+          authorizationType: AuthorizationType.OIDC,
+          openIdConnectConfig: {
+            oidcProvider: 'https://clxs.eu.auth0.com'
           }
         },
       },
@@ -98,7 +98,7 @@ export class Auth0demoStack extends cdk.Stack {
         }
 
         // Need to add permission for our datasource service role to access the sync table
-        dataSource.grantPrincipal.addToPolicy(new PolicyStatement({
+        dataSource.grantPrincipal.addToPrincipalPolicy(new PolicyStatement({
           effect: Effect.ALLOW,
           actions: [
             'dynamodb:*'
