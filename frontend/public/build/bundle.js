@@ -652,7 +652,8 @@ var app = (function () {
     async function createClient() {
       let auth0Client = await Ei({
         domain: config.domain,
-        client_id: config.clientId
+        client_id: config.clientId,
+        audience: "https://auth0demoAndy_API"
       });
 
       return auth0Client;
@@ -875,11 +876,11 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[10] = list[i];
+    	child_ctx[11] = list[i];
     	return child_ctx;
     }
 
-    // (76:8) {:else}
+    // (82:8) {:else}
     function create_else_block_2(ctx) {
     	let span;
 
@@ -887,7 +888,7 @@ var app = (function () {
     		c: function create() {
     			span = element("span");
     			span.textContent = " ";
-    			add_location(span, file, 75, 15, 1916);
+    			add_location(span, file, 81, 15, 2055);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -902,14 +903,14 @@ var app = (function () {
     		block,
     		id: create_else_block_2.name,
     		type: "else",
-    		source: "(76:8) {:else}",
+    		source: "(82:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (72:8) {#if $isAuthenticated}
+    // (78:8) {#if $isAuthenticated}
     function create_if_block_2(ctx) {
     	let span;
     	let t0;
@@ -929,7 +930,7 @@ var app = (function () {
     			t3 = text(t3_value);
     			t4 = text(")");
     			attr_dev(span, "class", "text-white");
-    			add_location(span, file, 72, 10, 1804);
+    			add_location(span, file, 78, 10, 1943);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -952,14 +953,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(72:8) {#if $isAuthenticated}",
+    		source: "(78:8) {#if $isAuthenticated}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (84:10) {:else}
+    // (90:10) {:else}
     function create_else_block_1(ctx) {
     	let li;
     	let a;
@@ -973,9 +974,9 @@ var app = (function () {
     			a.textContent = "Log In";
     			attr_dev(a, "class", "nav-link");
     			attr_dev(a, "href", "/#");
-    			add_location(a, file, 85, 14, 2256);
+    			add_location(a, file, 91, 14, 2395);
     			attr_dev(li, "class", "nav-item");
-    			add_location(li, file, 84, 12, 2220);
+    			add_location(li, file, 90, 12, 2359);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -998,14 +999,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(84:10) {:else}",
+    		source: "(90:10) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (80:10) {#if $isAuthenticated}
+    // (86:10) {#if $isAuthenticated}
     function create_if_block_1(ctx) {
     	let li;
     	let a;
@@ -1019,9 +1020,9 @@ var app = (function () {
     			a.textContent = "Log Out";
     			attr_dev(a, "class", "nav-link");
     			attr_dev(a, "href", "/#");
-    			add_location(a, file, 81, 14, 2112);
+    			add_location(a, file, 87, 14, 2251);
     			attr_dev(li, "class", "nav-item");
-    			add_location(li, file, 80, 12, 2076);
+    			add_location(li, file, 86, 12, 2215);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -1044,14 +1045,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(80:10) {#if $isAuthenticated}",
+    		source: "(86:10) {#if $isAuthenticated}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (117:2) {:else}
+    // (123:2) {:else}
     function create_else_block(ctx) {
     	let div3;
     	let div2;
@@ -1063,15 +1064,19 @@ var app = (function () {
     	let div1;
     	let input;
     	let t1;
-    	let br;
+    	let br0;
     	let t2;
-    	let button;
+    	let button0;
+    	let t4;
+    	let br1;
+    	let t5;
+    	let button1;
     	let current;
     	let mounted;
     	let dispose;
     	let each_value = /*$user_tasks*/ ctx[3];
     	validate_each_argument(each_value);
-    	const get_key = ctx => /*item*/ ctx[10].id;
+    	const get_key = ctx => /*item*/ ctx[11].id;
     	validate_each_keys(ctx, each_value, get_each_context, get_key);
 
     	for (let i = 0; i < each_value.length; i += 1) {
@@ -1095,28 +1100,37 @@ var app = (function () {
     			div1 = element("div");
     			input = element("input");
     			t1 = space();
-    			br = element("br");
+    			br0 = element("br");
     			t2 = space();
-    			button = element("button");
-    			button.textContent = "Add Task";
+    			button0 = element("button");
+    			button0.textContent = "Add Task";
+    			t4 = space();
+    			br1 = element("br");
+    			t5 = space();
+    			button1 = element("button");
+    			button1.textContent = "Get Token";
     			attr_dev(ul, "class", "list-group");
-    			add_location(ul, file, 120, 10, 3241);
+    			add_location(ul, file, 126, 10, 3380);
     			attr_dev(div0, "class", "col-md-6");
-    			add_location(div0, file, 119, 8, 3208);
+    			add_location(div0, file, 125, 8, 3347);
     			attr_dev(input, "class", "form-control");
     			attr_dev(input, "placeholder", "Enter New Task");
-    			add_location(input, file, 127, 10, 3446);
-    			add_location(br, file, 132, 10, 3583);
-    			attr_dev(button, "type", "button");
-    			attr_dev(button, "class", "btn btn-primary");
-    			add_location(button, file, 133, 10, 3600);
+    			add_location(input, file, 133, 10, 3585);
+    			add_location(br0, file, 138, 10, 3722);
+    			attr_dev(button0, "type", "button");
+    			attr_dev(button0, "class", "btn btn-primary");
+    			add_location(button0, file, 139, 10, 3739);
+    			add_location(br1, file, 142, 10, 3856);
+    			attr_dev(button1, "type", "button");
+    			attr_dev(button1, "class", "btn btn-primary");
+    			add_location(button1, file, 143, 10, 3873);
     			attr_dev(div1, "class", "col-md-6");
-    			add_location(div1, file, 126, 8, 3413);
+    			add_location(div1, file, 132, 8, 3552);
     			attr_dev(div2, "class", "row");
-    			add_location(div2, file, 118, 6, 3182);
+    			add_location(div2, file, 124, 6, 3321);
     			attr_dev(div3, "class", "container svelte-1tnsjy2");
     			attr_dev(div3, "id", "main-application");
-    			add_location(div3, file, 117, 4, 3130);
+    			add_location(div3, file, 123, 4, 3269);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -1133,15 +1147,20 @@ var app = (function () {
     			append_dev(div1, input);
     			set_input_value(input, /*newTask*/ ctx[0]);
     			append_dev(div1, t1);
-    			append_dev(div1, br);
+    			append_dev(div1, br0);
     			append_dev(div1, t2);
-    			append_dev(div1, button);
+    			append_dev(div1, button0);
+    			append_dev(div1, t4);
+    			append_dev(div1, br1);
+    			append_dev(div1, t5);
+    			append_dev(div1, button1);
     			current = true;
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input, "input", /*input_input_handler*/ ctx[7]),
-    					listen_dev(button, "click", /*addItem*/ ctx[6], false, false, false)
+    					listen_dev(input, "input", /*input_input_handler*/ ctx[8]),
+    					listen_dev(button0, "click", /*addItem*/ ctx[6], false, false, false),
+    					listen_dev(button1, "click", /*getToken*/ ctx[7], false, false, false)
     				];
 
     				mounted = true;
@@ -1193,14 +1212,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(117:2) {:else}",
+    		source: "(123:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (95:2) {#if !$isAuthenticated}
+    // (101:2) {#if !$isAuthenticated}
     function create_if_block(ctx) {
     	let div3;
     	let div2;
@@ -1246,25 +1265,25 @@ var app = (function () {
     			a = element("a");
     			a.textContent = "Log In";
     			attr_dev(h1, "class", "display-4");
-    			add_location(h1, file, 99, 12, 2593);
+    			add_location(h1, file, 105, 12, 2732);
     			attr_dev(p, "class", "lead");
-    			add_location(p, file, 100, 12, 2659);
-    			add_location(li0, file, 102, 14, 2723);
-    			add_location(li1, file, 103, 14, 2771);
-    			add_location(li2, file, 104, 14, 2817);
-    			add_location(ul, file, 101, 12, 2704);
+    			add_location(p, file, 106, 12, 2798);
+    			add_location(li0, file, 108, 14, 2862);
+    			add_location(li1, file, 109, 14, 2910);
+    			add_location(li2, file, 110, 14, 2956);
+    			add_location(ul, file, 107, 12, 2843);
     			attr_dev(a, "class", "btn btn-primary btn-lg mr-auto ml-auto");
     			attr_dev(a, "href", "/#");
     			attr_dev(a, "role", "button");
-    			add_location(a, file, 106, 12, 2889);
+    			add_location(a, file, 112, 12, 3028);
     			attr_dev(div0, "class", "jumbotron");
-    			add_location(div0, file, 98, 10, 2557);
+    			add_location(div0, file, 104, 10, 2696);
     			attr_dev(div1, "class", "col-md-10 offset-md-1");
-    			add_location(div1, file, 97, 8, 2511);
+    			add_location(div1, file, 103, 8, 2650);
     			attr_dev(div2, "class", "row");
-    			add_location(div2, file, 96, 6, 2485);
+    			add_location(div2, file, 102, 6, 2624);
     			attr_dev(div3, "class", "container mt-5");
-    			add_location(div3, file, 95, 4, 2450);
+    			add_location(div3, file, 101, 4, 2589);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -1303,21 +1322,21 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(95:2) {#if !$isAuthenticated}",
+    		source: "(101:2) {#if !$isAuthenticated}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (122:12) {#each $user_tasks as item (item.id)}
+    // (128:12) {#each $user_tasks as item (item.id)}
     function create_each_block(key_1, ctx) {
     	let first;
     	let taskitem;
     	let current;
 
     	taskitem = new TaskItem({
-    			props: { task: /*item*/ ctx[10] },
+    			props: { task: /*item*/ ctx[11] },
     			$$inline: true
     		});
 
@@ -1337,7 +1356,7 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
     			const taskitem_changes = {};
-    			if (dirty & /*$user_tasks*/ 8) taskitem_changes.task = /*item*/ ctx[10];
+    			if (dirty & /*$user_tasks*/ 8) taskitem_changes.task = /*item*/ ctx[11];
     			taskitem.$set(taskitem_changes);
     		},
     		i: function intro(local) {
@@ -1359,7 +1378,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(122:12) {#each $user_tasks as item (item.id)}",
+    		source: "(128:12) {#each $user_tasks as item (item.id)}",
     		ctx
     	});
 
@@ -1431,9 +1450,9 @@ var app = (function () {
     			if_block2.c();
     			attr_dev(a, "class", "navbar-brand");
     			attr_dev(a, "href", "/#");
-    			add_location(a, file, 57, 4, 1318);
+    			add_location(a, file, 63, 4, 1457);
     			attr_dev(span0, "class", "navbar-toggler-icon");
-    			add_location(span0, file, 67, 6, 1601);
+    			add_location(span0, file, 73, 6, 1740);
     			attr_dev(button, "class", "navbar-toggler");
     			attr_dev(button, "type", "button");
     			attr_dev(button, "data-toggle", "collapse");
@@ -1441,19 +1460,19 @@ var app = (function () {
     			attr_dev(button, "aria-controls", "navbarText");
     			attr_dev(button, "aria-expanded", "false");
     			attr_dev(button, "aria-label", "Toggle navigation");
-    			add_location(button, file, 58, 4, 1373);
+    			add_location(button, file, 64, 4, 1512);
     			attr_dev(div0, "class", "navbar-nav mr-auto user-details");
-    			add_location(div0, file, 70, 6, 1717);
+    			add_location(div0, file, 76, 6, 1856);
     			attr_dev(ul, "class", "navbar-nav float-right");
-    			add_location(ul, file, 78, 8, 1995);
+    			add_location(ul, file, 84, 8, 2134);
     			attr_dev(span1, "class", "navbar-text");
-    			add_location(span1, file, 77, 6, 1960);
+    			add_location(span1, file, 83, 6, 2099);
     			attr_dev(div1, "class", "collapse navbar-collapse");
     			attr_dev(div1, "id", "navbarText");
-    			add_location(div1, file, 69, 4, 1656);
+    			add_location(div1, file, 75, 4, 1795);
     			attr_dev(nav, "class", "navbar navbar-expand-lg navbar-dark bg-dark");
-    			add_location(nav, file, 56, 2, 1256);
-    			add_location(main, file, 54, 0, 1228);
+    			add_location(nav, file, 62, 2, 1395);
+    			add_location(main, file, 60, 0, 1367);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1571,7 +1590,7 @@ var app = (function () {
     	validate_store(user, "user");
     	component_subscribe($$self, user, $$value => $$invalidate(1, $user = $$value));
     	validate_store(tasks, "tasks");
-    	component_subscribe($$self, tasks, $$value => $$invalidate(9, $tasks = $$value));
+    	component_subscribe($$self, tasks, $$value => $$invalidate(10, $tasks = $$value));
     	validate_store(isAuthenticated, "isAuthenticated");
     	component_subscribe($$self, isAuthenticated, $$value => $$invalidate(2, $isAuthenticated = $$value));
     	validate_store(user_tasks, "user_tasks");
@@ -1611,6 +1630,12 @@ var app = (function () {
     		$$invalidate(0, newTask = "");
     	}
 
+    	async function getToken() {
+    		const token = await auth0Client.getTokenSilently();
+    		console.log(token);
+    		console.log($user);
+    	}
+
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
@@ -1636,6 +1661,7 @@ var app = (function () {
     		logout,
     		addItem,
     		genRandom,
+    		getToken,
     		$user,
     		$tasks,
     		$isAuthenticated,
@@ -1659,6 +1685,7 @@ var app = (function () {
     		login,
     		logout,
     		addItem,
+    		getToken,
     		input_input_handler
     	];
     }

@@ -50,6 +50,12 @@
       result += chars[Math.round(Math.random() * (chars.length - 1))];
     return result;
   }
+
+  async function getToken() {
+    const token = await auth0Client.getTokenSilently();
+    console.log(token);
+    console.log($user);
+  }
 </script>
 
 <main>
@@ -133,6 +139,10 @@
           <br />
           <button type="button" class="btn btn-primary" on:click={addItem}>
             Add Task
+          </button>
+          <br />
+          <button type="button" class="btn btn-primary" on:click={getToken}>
+            Get Token
           </button>
         </div>
       </div>

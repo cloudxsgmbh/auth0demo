@@ -7,7 +7,8 @@ import config from '../auth_config'
 async function createClient() {
   let auth0Client = await createAuth0Client({
     domain: config.domain,
-    client_id: config.clientId
+    client_id: config.clientId,
+    audience: "https://auth0demoAndy_API"
   });
 
   return auth0Client;
