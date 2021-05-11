@@ -1,7 +1,8 @@
 type Task {
   id: ID!
-  name: String!
-  completed: Boolean!
+  name: String
+  completed: Boolean
+  owner: String
   _version: Int!
   _deleted: Boolean
   _lastChangedAt: AWSTimestamp!
@@ -97,6 +98,7 @@ input ModelTaskFilterInput {
   id: ModelIDInput
   name: ModelStringInput
   completed: ModelBooleanInput
+  owner: ModelStringInput
   and: [ModelTaskFilterInput]
   or: [ModelTaskFilterInput]
   not: ModelTaskFilterInput
@@ -116,15 +118,16 @@ enum ModelAttributeTypes {
 }
 
 type Query {
-  syncTasks(filter: ModelTaskFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTaskConnection
   getTask(id: ID!): Task
   listTasks(filter: ModelTaskFilterInput, limit: Int, nextToken: String): ModelTaskConnection
+  syncTasks(filter: ModelTaskFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTaskConnection
 }
 
 input CreateTaskInput {
   id: ID
-  name: String!
-  completed: Boolean!
+  name: String
+  completed: Boolean
+  owner: String
   _version: Int
 }
 
@@ -132,6 +135,7 @@ input UpdateTaskInput {
   id: ID!
   name: String
   completed: Boolean
+  owner: String
   _version: Int
 }
 
@@ -155,7 +159,7 @@ input ModelTaskConditionInput {
 }
 
 type Subscription {
-  onCreateTask: Task @aws_subscribe(mutations: ["createTask"])
-  onUpdateTask: Task @aws_subscribe(mutations: ["updateTask"])
-  onDeleteTask: Task @aws_subscribe(mutations: ["deleteTask"])
+  onCreateTask(owner: String!): Task @aws_subscribe(mutations: ["createTask"])
+  onUpdateTask(owner: String!): Task @aws_subscribe(mutations: ["updateTask"])
+  onDeleteTask(owner: String!): Task @aws_subscribe(mutations: ["deleteTask"])
 }

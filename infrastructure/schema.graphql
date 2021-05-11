@@ -1,5 +1,8 @@
-type Task @model {
+type Task
+  @model
+  @auth(rules: [{ allow: owner, provider: oidc, identityClaim: "sub" }]) {
   id: ID!
-  name: String!
-  completed: Boolean!
+  name: String
+  completed: Boolean
+  owner: String
 }

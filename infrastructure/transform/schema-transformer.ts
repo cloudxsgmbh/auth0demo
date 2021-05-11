@@ -53,9 +53,10 @@ export class SchemaTransformer {
                 },
                 additionalAuthenticationProviders: [
                     {
-                        authenticationType: 'AMAZON_COGNITO_USER_POOLS',
-                        userPoolConfig: {
-                            userPoolId: '12345xyz'
+                        authenticationType: 'OPENID_CONNECT',
+                        openIDConnectConfig: {
+                            name: 'OIDC',
+                            issuerUrl: 'https://clxs.eu.auth0.com'
                         }
                     }
                 ]
