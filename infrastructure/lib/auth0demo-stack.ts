@@ -3,6 +3,7 @@ import * as s3 from '@aws-cdk/aws-s3';
 import * as s3Deployment from '@aws-cdk/aws-s3-deployment';
 import * as cloudfront from '@aws-cdk/aws-cloudfront';
 import { OpenIdConnectProvider } from '@aws-cdk/aws-iam';
+import { CfnIdentityPool } from '@aws-cdk/aws-cognito';
 import { GraphqlApi, FieldLogLevel, MappingTemplate, AuthorizationType, Schema } from '@aws-cdk/aws-appsync';
 import { Table, AttributeType, BillingMode, ProjectionType } from '@aws-cdk/aws-dynamodb';
 import { PolicyStatement, Effect } from '@aws-cdk/aws-iam';
@@ -47,6 +48,13 @@ export class Auth0demoStack extends cdk.Stack {
       url: 'https://clxs.eu.auth0.com',
       clientIds: ["2ZNtsXTWwazwmyTDLTuli6XeLXXSMuZJ"],
       thumbprints:['B3DD7606D2B5A8B4A13771DBECC9EE1CECAFA38A']
+    });
+
+    // Cognito Identiy pool
+    new CfnIdentityPool(this, 'OpenIDIdentityPool', {
+      allowUnauthenticatedIdentities: false,
+      identityPoolName: 'Auth0',
+      openIdConnectProviderArns: [oidc.openIdConnectProviderArn]
     });
 
 
