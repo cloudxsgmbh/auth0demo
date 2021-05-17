@@ -5,7 +5,9 @@ import './App.css';
 // Amplify
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Amplify,{ Hub } from "@aws-amplify/core";
+import Auth from "@aws-amplify/auth";
 import { DataStore, Predicates } from "@aws-amplify/datastore";
+
 
 // Custom
 import { Task } from './models';
@@ -17,8 +19,15 @@ import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile';
 
+const auth = {
+  Auth:{
+    identityPoolId: 'eu-central-1:e83f7954-1be8-4460-b2fd-7916141fcaee',
+    region: 'eu-central-1'
+  }
+}
 
 Amplify.configure(awsconfig);
+Auth.configure(auth);
 
 
 
@@ -40,9 +49,30 @@ function App() {
   const [displaySearch, setDisplaySearch] = useState(false);
 
   
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, getIdTokenClaims, getAccessTokenSilently } = useAuth0();
   if (isAuthenticated){
-    console.log('AppUser:', user);
+    async function customAuth() {
+      //console.log('AppUser:', user);
+      const x = await getAccessTokenSilently();
+      const idToken = await getIdTokenClaims();
+
+
+      Auth.federatedSignIn(
+        "clxs.eu.auth0.com", // The Auth0 Domain,
+        {
+          token: idToken.__raw, // The id token from Auth0
+          // expires_at means the timestamp when the token provided expires,
+          // here we can derive it from the expiresIn parameter provided,
+          // then convert its unit from second to millisecond, and add the current timestamp
+          expires_at: (idToken.exp * 1000) // the expiration timestamp
+        },
+        user
+      ).then(cred => {
+          console.log(cred);
+      });
+
+    }
+    //customAuth();
   }
 
 
